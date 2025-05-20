@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"go-crm-api-shopdev/internal/routers"
+)
 
 func main() {
-	fmt.Println("Starting")
+	r := routers.NewRouter()
+	r.Run(":8080")
 }
