@@ -2,7 +2,7 @@ package controller
 
 import (
 	"go-crm-api-shopdev/internal/service"
-	"net/http"
+	"go-crm-api-shopdev/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,8 +18,5 @@ func NewUserController() *UserController {
 }
 
 func (uc *UserController) GetInfoUser(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "getUser",
-		"info":    uc.userService.GetInfoUser(),
-	})
+	response.SuccessResponse(c, 20001, []string{"abc", "123", "abc"})
 }
