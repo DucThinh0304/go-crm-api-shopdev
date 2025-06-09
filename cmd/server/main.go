@@ -1,10 +1,9 @@
 package main
 
 import (
-	"go-crm-api-shopdev/internal/routers"
+	"go-crm-api-shopdev/internal/initialize"
 )
 
 func main() {
-	r := routers.NewRouter()
-	r.Run(":8080")
+	initialize.Run()
 }

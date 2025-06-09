@@ -1,0 +1,11 @@
+server:
+  port: 8802
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  username: root
+  password: tipjs
+  dbname: shopdevgo
+  maxIdleConns: 10
+  maxOpenConns: 100
+  connMaxLifetime: 3600
