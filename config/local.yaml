@@ -9,3 +9,10 @@ mysql:
   maxIdleConns: 10
   maxOpenConns: 100
   connMaxLifetime: 3600
+log:
+  log_level: debug
+  file_name: "./storages/logs/dex.xxx.log"
+  max_size: 500
+  max_backups: 3
+  max_age: 28
+  compress: true
