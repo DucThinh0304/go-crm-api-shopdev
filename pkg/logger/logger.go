@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"go-crm-api-shopdev/pkg/setting"
 	"os"
 
 	"go.uber.org/zap"
@@ -12,9 +13,9 @@ type LoggerZap struct {
 	*zap.Logger
 }
 
-func NewLogger() *LoggerZap {
+func NewLogger(config setting.LoggerSetting) *LoggerZap {
 	encoder := getEncoderLog()
-	logLevel := "debug"
+	logLevel := config.Log_level
 	// debug-> info-> warn ->error->fatal->p
 	var level zapcore.Level
 	switch logLevel {
@@ -30,11 +31,11 @@ func NewLogger() *LoggerZap {
 		level = zapcore.InfoLevel
 	}
 	hook := lumberjack.Logger{
-		Filename:   "./storages/logs/dex.xxx.log",
-		MaxSize:    500, // megabytes
-		MaxBackups: 3,
-		MaxAge:     28,   //days
-		Compress:   true, // disabled by default
+		Filename:   config.File_log_name,
+		MaxSize:    config.Max_size, // megabytes
+		MaxBackups: config.Max_backups,
+		MaxAge:     config.Max_age,  //days
+		Compress:   config.Compress, // disabled by default
 	}
 	core := zapcore.NewCore(encoder,
 		zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout), zapcore.AddSync(&hook)),
